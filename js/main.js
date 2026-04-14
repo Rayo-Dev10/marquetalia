@@ -1,5 +1,12 @@
 ﻿(function () {
-  const slideData = Array.isArray(window.slidesData) ? window.slidesData : [];
+  const hasGlobalSlidesConst = typeof slides !== "undefined" && Array.isArray(slides);
+  const slideData = Array.isArray(window.slidesData)
+    ? window.slidesData
+    : hasGlobalSlidesConst
+      ? slides
+      : Array.isArray(window.slides)
+        ? window.slides
+        : [];
 
   const slidesContainer = document.getElementById("slides");
   const bgImage = document.getElementById("bgImage");
@@ -220,3 +227,4 @@
 
   init();
 })();
+
